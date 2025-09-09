@@ -1,0 +1,18 @@
+import { v4 as uuidv4 } from 'uuid';
+
+export abstract class BaseEntity {
+  protected readonly _id: string;
+  protected readonly _createdAt: Date;
+  protected _updatedAt: Date;
+
+  constructor(id?: string) {
+    this._id = id ?? uuidv4();
+    this._createdAt = new Date();
+    this._updatedAt = new Date();
+  }
+
+  get id() { return this._id; }
+  get createdAt() { return this._createdAt; }
+  get updatedAt() { return this._updatedAt; }
+  protected touch() { this._updatedAt = new Date(); }
+}
